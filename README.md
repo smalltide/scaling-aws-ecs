@@ -6,6 +6,8 @@ https://www.udemy.com/scaling-docker-on-aws
 
 Course Resource
 * [Getting Set up on AWS](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-getting-set-up-on-aws.pdf)  
+* [Installing and Configuring the AWS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-installing-and-configuring-the-aws-cli.pdf)  
+
 
 
 Skills
@@ -15,7 +17,7 @@ Skills
 4. Docker
 
 #### AWS Scaling  
-![alt text]#(https://github.com/smalltide/scaling-aws-ecs/blob/master/img/aws-scaling.png "aws-scaling")
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/aws-scaling.png "aws-scaling")
 
 #### AWS ECS Compare with Other Services  
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs1.png "ecs1")
@@ -37,4 +39,15 @@ install docker, docker-machine, docker-compose on Linux
   > chmod +x /usr/local/bin/docker-compose
   > exit
   > docker-compose version  
+```
+Installing and Configuring the AWS CLI
+```
+  > sudo apt-get install curl
+  > curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" 
+  > unzip awscli-bundle.zip
+  > sudo ./awscli-bundle/install -i /usr/local/aws -b / /usr/local/bin/aws
+  > rm -rf awscli-bundle.zip awscli-bundle
+  > aws --version
+  > aws configure
+  > aws iam list-users
 ```
