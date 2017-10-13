@@ -91,3 +91,4 @@ AWS ECS Clusters
   > aws ecs delete-cluster --cluster deepdive
   > aws ecs create-cluster --cluster-name deepdive
 ```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-cluster.png "ecs-cluster")
