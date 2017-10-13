@@ -74,3 +74,6 @@ ecsInstanceRole
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-role1.png "ecs-role1")
 ecsServiceRole
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-role2.png "ecs-role2")
+
+#### ECS Components
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-components.png "ecs-components")
