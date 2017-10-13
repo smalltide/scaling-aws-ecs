@@ -51,7 +51,7 @@ Installing and Configuring the AWS CLI
   > aws configure
   > aws iam list-users
 ```
-Creating an SSH Keypair
+Creating an SSH Keypair (local pc ssh can connect ec2 instance)
 ```
   > aws ec2 create-key-pair --key-name aws-ice --query 'KeyMaterial' --output text > ~/.ssh/aws-ice.pem
   > aws ec2 describe-key-pairs
@@ -69,3 +69,8 @@ Creating a Security Group (Security Group used for setting ec2 network rule)
   > aws ec2 describe-security-groups --group-id sg-cxxxxxxx
   > aws ec2 delete-security-group --group-id sg-cxxxxxxx
 ```
+#### Creating ECS IAM Roles (used for manage aws resource access permission)
+ecsInstanceRole
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-role1.png "ecs-role1")
+ecsServiceRole
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-role2.png "ecs-role2")
