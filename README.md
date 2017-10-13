@@ -4,12 +4,6 @@ Learn how to build and deploy a fault tolerant, scalable and load balanced AP on
 Scaling Docker on AWS  
 https://www.udemy.com/scaling-docker-on-aws
 
-Course Resource
-* [Getting Set up on AWS](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-getting-set-up-on-aws.pdf)  
-* [Installing and Configuring the AWS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-installing-and-configuring-the-aws-cli.pdf)  
-* [Creating an SSH Keypair](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-an-ssh-keypair.pdf)  
-* [Creating a Security Group](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-a-security-group.pdf)  
-
 Skills
 1. AWS
 2. AWS ECR
@@ -24,7 +18,7 @@ Skills
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs2.png "ecs2")
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs3.png "ecs3")
 
-install docker, docker-machine, docker-compose on Linux
+Install docker, docker-machine, docker-compose on Linux
 ```
   > https://store.docker.com
   > https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/
@@ -40,6 +34,12 @@ install docker, docker-machine, docker-compose on Linux
   > exit
   > docker-compose version  
 ```
+#### AWS Set up Resource
+* [Getting Set up on AWS](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-getting-set-up-on-aws.pdf)  
+* [Installing and Configuring the AWS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-installing-and-configuring-the-aws-cli.pdf)  
+* [Creating an SSH Keypair](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-an-ssh-keypair.pdf)  
+* [Creating a Security Group](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-a-security-group.pdf)  
+
 Installing and Configuring the AWS CLI
 ```
   > sudo apt-get install curl
@@ -77,3 +77,17 @@ ecsServiceRole
 
 #### ECS Components
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-components.png "ecs-components")
+
+#### ECS Components Resource
+* [ECS Clusters](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-clusters.pdf)
+
+
+
+AWS ECS Clusters
+```
+  > aws ecs create-cluster --cluster-name deepdive
+  > aws ecs list-clusters
+  > aws ecs describe-clusters --clusters deepdive
+  > aws ecs delete-cluster --cluster deepdive
+  > aws ecs create-cluster --cluster-name deepdive
+```
