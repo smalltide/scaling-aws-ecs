@@ -8,7 +8,7 @@ Course Resource
 * [Getting Set up on AWS](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-getting-set-up-on-aws.pdf)  
 * [Installing and Configuring the AWS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-installing-and-configuring-the-aws-cli.pdf)  
 * [Creating an SSH Keypair](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-an-ssh-keypair.pdf)  
-
+* [Creating a Security Group](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-a-security-group.pdf)  
 
 Skills
 1. AWS
@@ -57,4 +57,15 @@ Creating an SSH Keypair
   > aws ec2 describe-key-pairs
   > aws ec2 describe-key-pairs --key-names aws-ice
   > aws ec2 delete-key-pair --key-names aws-ice (for delete)
+```
+Creating a Security Group (Security Group used for setting ec2 network rule)
+```
+  > aws ec2 create-security-group --group-name ice_sg_ap-northeast-1 --description "security group for ice on ap-northeast-1"
+  > aws ec2 describe-security-groups --group-id sg-cxxxxxxx
+  > aws ec2 authorize-security-group-ingress --group-id sg-cxxxxxxx --protocol tcp --port 22 --cidr 0.0.0.0/0
+  > aws ec2 authorize-security-group-ingress --group-id sg-cxxxxxxx --protocol tcp --port 80 --cidr 0.0.0.0/0
+  > aws ec2 authorize-security-group-ingress --group-id sg-cxxxxxxx --protocol tcp --port 5432 --cidr 0.0.0.0/0 --source-group sg-cxxxxxxx (for RDS)
+  > aws ec2 authorize-security-group-ingress --group-id sg-cxxxxxxx --protocol tcp --port 6379 --cidr 0.0.0.0/0 --source-group sg-cxxxxxxx (for redis)
+  > aws ec2 describe-security-groups --group-id sg-cxxxxxxx
+  > aws ec2 delete-security-group --group-id sg-cxxxxxxx
 ```
