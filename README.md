@@ -7,7 +7,7 @@ https://www.udemy.com/scaling-docker-on-aws
 Course Resource
 * [Getting Set up on AWS](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-getting-set-up-on-aws.pdf)  
 * [Installing and Configuring the AWS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-installing-and-configuring-the-aws-cli.pdf)  
-
+* [Creating an SSH Keypair](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-an-ssh-keypair.pdf)  
 
 
 Skills
@@ -50,4 +50,11 @@ Installing and Configuring the AWS CLI
   > aws --version
   > aws configure
   > aws iam list-users
+```
+Creating an SSH Keypair
+```
+  > aws ec2 create-key-pair --key-name aws-ice --query 'KeyMaterial' --output text > ~/.ssh/aws-ice.pem
+  > aws ec2 describe-key-pairs
+  > aws ec2 describe-key-pairs --key-names aws-ice
+  > aws ec2 delete-key-pair --key-names aws-ice (for delete)
 ```
