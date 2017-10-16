@@ -82,6 +82,7 @@ ecsServiceRole
 * [ECS Clusters](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-clusters.pdf)
 * [ECS Container Agent](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-agent.pdf)
 * [Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
+* [Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-task-definitions.pdf)
 
 
 AWS ECS Clusters
@@ -107,13 +108,29 @@ ECS Container Agent
 Container Instances
 ```
   > cd deepdive
-  > aws ec2 run-instances
   > aws ec2 run-instances --image-id ami-21815747 --count 1 --instance-type t2.micro --iam-instance-profile Name=ecsInstanceRole --key-name aws-ice --security-group-ids sg-xxxxxx --user-data file://copy-ecs-config-to-s3 (aws-ice mean ssh key)
-  >  aws ec2 describe-instance-status --instance-ids i-02211c3f0f8xxxxx
-  > aws ec2 get-console-output --instance-id i-02211c3f0f89xxxxx
+  > aws ec2 describe-instance-status --instance-ids i-06e2c776d598xxxxx
+  > aws ec2 get-console-output --instance-id i-06e2c776d598xxxxx
   > aws ecs list-container-instances --cluster deepdive
   > aws ecs describe-container-instances --cluster deepdive --container-instances arn:aws:ecs:ap-northeast-1:28xxxxxxx:container-instance/01cf8a5e-6952-475c-b471-xxxxxxxx
-  > aws ec2 terminate-instances --instance-ids i-02211c3f0f8xxxxx (for delete instance)
+  > aws ec2 terminate-instances --instance-ids i-06e2c776d598xxxxx (for delete instance)
+  > ssh -i "aws-ice.pem" ec2-user@<ec2 instance ip> (ssh login ec2 instance)
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/container-instance.png "container-instance")
 
+Task Definitions
+```
+  > cd deepdive
+  > aws ecs register-task-definition --cli-input-json file://web-task-definition.json
+  > aws ecs list-task-definitions
+  > aws ecs list-task-definition-families
+  > aws ecs describe-task-definition --task-definition web:1
+  > aws ecs register-task-definition --cli-input-json file://web-task-definition.json (see "revision": 1 to "revision": 2)
+  > aws ecs list-task-definitions
+  > aws ecs deregister-task-definition --task-definition web:2 (delete revision 2)
+  > aws ecs list-task-definitions
+  > aws ecs register-task-definition help
+  > aws ecs register-task-definition --generate-cli-skeleton
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/task-definition1.png "task-definition1")
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/task-definition2.png "task-definition2")
