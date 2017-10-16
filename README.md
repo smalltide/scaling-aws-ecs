@@ -81,6 +81,8 @@ ecsServiceRole
 #### ECS Components Resource
 * [ECS Clusters](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-clusters.pdf)
 * [ECS Container Agent](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-agent.pdf)
+* [Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
+
 
 AWS ECS Clusters
 ```
@@ -101,3 +103,17 @@ ECS Container Agent
   > aws s3 cp s3://ecs-deepdive/ecs.config ecs.config (download)
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/container-agent.png "container-agent")
+
+Container Instances
+```
+  > cd deepdive
+  > aws ec2 run-instances
+  > aws ec2 run-instances --image-id ami-21815747 --count 1 --instance-type t2.micro --iam-instance-profile Name=ecsInstanceRole --key-name aws-ice --security-group-ids sg-xxxxxx --user-data file://copy-ecs-config-to-s3 (aws-ice mean ssh key)
+  >  aws ec2 describe-instance-status --instance-ids i-02211c3f0f8xxxxx
+  > aws ec2 get-console-output --instance-id i-02211c3f0f89xxxxx
+  > aws ecs list-container-instances --cluster deepdive
+  > aws ecs describe-container-instances --cluster deepdive --container-instances arn:aws:ecs:ap-northeast-1:28xxxxxxx:container-instance/01cf8a5e-6952-475c-b471-xxxxxxxx
+  > aws ec2 terminate-instances --instance-ids i-02211c3f0f8xxxxx (for delete instance)
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/container-instance.png "container-instance")
+
