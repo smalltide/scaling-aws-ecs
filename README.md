@@ -80,8 +80,7 @@ ecsServiceRole
 
 #### ECS Components Resource
 * [ECS Clusters](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-clusters.pdf)
-
-
+* [ECS Container Agent](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-agent.pdf)
 
 AWS ECS Clusters
 ```
@@ -92,3 +91,13 @@ AWS ECS Clusters
   > aws ecs create-cluster --cluster-name deepdive
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-cluster.png "ecs-cluster")
+
+ECS Container Agent
+```
+  > aws s3api create-bucket --bucket ecs-deepdive --region ap-northeast-1 --create-bucket-configuration LocationConstraint=ap-northeast-1
+  > cd deepdive
+  > aws s3 cp ecs.config s3://ecs-deepdive/ecs.config (upload)
+  > aws s3 ls s3://ecs-deepdive
+  > aws s3 cp s3://ecs-deepdive/ecs.config ecs.config (download)
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/container-agent.png "container-agent")
