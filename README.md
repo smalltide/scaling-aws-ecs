@@ -186,4 +186,5 @@ Private Docker Registry (ECR)
   > aws ecr list-images --repository-name deepdive/nginx
   > aws ecs register-task-definition --cli-input-json file://web-task-definition.json
   > aws ecs run-task --cluster deepdive --task-definition web --count 1
-```(https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecr.png "ecr")
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecr.png "ecr")
