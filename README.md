@@ -211,8 +211,9 @@ Tearing down Our Cluster
   > aws ecs deregister-task-definition --task-definition web
 ```
 
-#### ECS Components
+#### Developing the Ruby on Rails Application
 * [Generating a New Rails Project](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-generating-a-new-rails-project.pdf)
+* [Running the Application Locally](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-running-the-application-locally.pdf)
 
 
 Generating a New Rails Project
@@ -222,10 +223,17 @@ Generating a New Rails Project
   > docker image ls
   > docker image rm rails (if want to delete rails image)
 ```
-
+Running the Application Locally
 ```
-  >
-  >
+  > cd dockerzon
+  > docker-compose up
+  > docker volume ls
+  > docker network ls
+  > docker container ls
+  > docker exec dockerzon_dockerzon_1 rake db:reset
+  > curl 127.0.0.1:8000
+  > docker exec dockerzon_dockerzon_1 rake db:migrate
+  > curl 127.0.0.1:8000
   >
   >
   >
