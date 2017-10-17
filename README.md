@@ -86,6 +86,7 @@ ecsServiceRole
 * [ECS Scheduler](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduler.pdf)
 * [ECS Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduling-services.pdf)
 * [ECS Run Task and Start Task](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-starting-tasks.pdf)
+* [Private Docker Registry (ECR)](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-private-docker-registry-ecr.pdf)
 
 AWS ECS Clusters
 ```
@@ -146,6 +147,7 @@ ECS Scheduler
 
 Scheduling Services
 ```
+  > cd deepdive
   > aws ecs create-service --cluster deepdive --service-name web --task-definition web --desired-count 1 (create 1 web service)
   > aws ecs list-services --cluster deepdive
   > aws ecs describe-services --cluster deepdive --services web
@@ -159,6 +161,7 @@ Scheduling Services
 ```
 Run Task and Start Task
 ```
+  > cd deepdive
   > aws ecs run-task --cluster deepdive --task-definition web --count 1 (auto select container-instance)
   > aws ecs list-tasks --cluster deepdive
   > aws ecs stop-task --cluster deepdive --task arn:aws:ecs:ap-northeast-1:2829XXXXXX:task/38890c8d-bd81-4998-be6d-527bXXXXXX
@@ -168,3 +171,19 @@ Run Task and Start Task
   > aws ecs start-task --cluster deepdive --task-definition web --container-instances arn:aws:ecs:ap-northeast-1:2829XXXXXX:container-instance/3233fc0a-8ba6-4698-abb4-817XXXXXX (specific select container-instance)
   > aws ecs stop-task --cluster deepdive --task arn:aws:ecs:ap-northeast-1:2829XXXXXX:task/b5d42a83-4276-46df-9cdb-0df6dXXXXXX
 ```
+Private Docker Registry (ECR)
+```
+  > cd deepdive
+  > aws ecr get-login --no-include-email --region ap-northeast-1 (see docker login -u AWS -p ......)
+  > aws ecr create-repository --repository-name deepdive/nginx
+  > aws ecr describe-repositories
+  > aws ecr list-images --repository-name deepdive/nginx
+  > docker pull nginx:1.9
+  > docker image ls
+  > docker tag nginx:1.9 2829XXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/deepdive/nginx:1.9
+  > docker image ls
+  > docker push 2829XXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/deepdive/nginx:1.9
+  > aws ecr list-images --repository-name deepdive/nginx
+  > aws ecs register-task-definition --cli-input-json file://web-task-definition.json
+  > aws ecs run-task --cluster deepdive --task-definition web --count 1
+```(https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecr.png "ecr")
