@@ -83,6 +83,7 @@ ecsServiceRole
 * [ECS Container Agent](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-agent.pdf)
 * [Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
 * [Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-task-definitions.pdf)
+* [ECS Scheduler](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduler.pdf)
 
 
 AWS ECS Clusters
@@ -134,3 +135,10 @@ Task Definitions
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/task-definition1.png "task-definition1")
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/task-definition2.png "task-definition2")
+
+ECS Scheduler
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler1.png "scheduler1")
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler2.png "scheduler2")
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler3.png "scheduler3")
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler4.png "scheduler4")
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler5.png "scheduler5")
