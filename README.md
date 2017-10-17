@@ -88,6 +88,7 @@ ecsServiceRole
 * [ECS Run Task and Start Task](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-starting-tasks.pdf)
 * [Private Docker Registry (ECR)](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-private-docker-registry-ecr.pdf)
 * [ECS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-ecs-cli.pdf)
+* [Tearing down ECS Cluster](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-tearing-down-our-cluster.pdf)
 
 AWS ECS Clusters
 ```
@@ -194,5 +195,18 @@ ECS CLI
 ```
   > https://github.com/aws/amazon­ecs­cli
   > http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_tutorial.html
+  > ecs-cli images
+  > ecs-cli ps --cluster deepdive
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecscli.png "ecscli")
+
+Tearing down Our Cluster
+```
+  > aws ec2 terminate-instances --instance-ids i-06e2c776d59XXXXXX
+  > aws s3 rm s3://ecs-deepdive --recursive
+  > aws s3api delete-bucket --bucket deepdive
+  > aws s3api delete-bucket --bucket ecs-deepdive
+  > aws ecr delete-repository --repository-name deepdive/nginx --force
+  > aws ecs delete-cluster --cluster deepdive
+  > aws ecs deregister-task-definition --task-definition web
+```
