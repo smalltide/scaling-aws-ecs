@@ -222,3 +222,12 @@ Generating a New Rails Project
   > docker image ls
   > docker image rm rails (if want to delete rails image)
 ```
+
+```
+  >
+  >
+  >
+  >
+  >
+  >
+```
