@@ -84,6 +84,8 @@ ecsServiceRole
 * [Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
 * [Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-task-definitions.pdf)
 * [ECS Scheduler](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduler.pdf)
+* [ECS Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduling-services.pdf)
+
 
 
 AWS ECS Clusters
@@ -142,3 +144,17 @@ ECS Scheduler
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler3.png "scheduler3")
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler4.png "scheduler4")
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler5.png "scheduler5")
+
+Scheduling Services
+```
+  > aws ecs create-service --cluster deepdive --service-name web --task-definition web --desired-count 1 (create 1 web service)
+  > aws ecs list-services --cluster deepdive
+  > aws ecs describe-services --cluster deepdive --services web
+  > aws ec2 describe-instances (find Public DNS)
+  > aws ecs update-service --cluster deepdive --service web --task-definition web --desired-count 2 (update web service to 2 instance)
+  > aws ecs describe-services --cluster deepdive --services web (see only 1 runningCount, because the port 80 in used)
+  > aws ecs update-service --cluster deepdive --service web --task-definition web --desired-count 0 (remove all task)
+  > aws ecs delete-service --cluster deepdive --service web (delete web service)
+  > aws ecs list-services --cluster deepdive
+  > aws ecs create-service --generate-cli-skeleton
+```
