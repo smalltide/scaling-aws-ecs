@@ -136,7 +136,7 @@ Task Definitions
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/task-definition1.png "task-definition1")
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/task-definition2.png "task-definition2")
 
-ECS Scheduler
+ECS Scheduler  
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler1.png "scheduler1")
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler2.png "scheduler2")
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/scheduler3.png "scheduler3")
