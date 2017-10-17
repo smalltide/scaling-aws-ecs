@@ -81,12 +81,11 @@ ecsServiceRole
 #### ECS Components Resource
 * [ECS Clusters](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-clusters.pdf)
 * [ECS Container Agent](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-agent.pdf)
-* [Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
-* [Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-task-definitions.pdf)
+* [ECS Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
+* [ECS Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-task-definitions.pdf)
 * [ECS Scheduler](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduler.pdf)
 * [ECS Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduling-services.pdf)
-
-
+* [ECS Run Task and Start Task](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-starting-tasks.pdf)
 
 AWS ECS Clusters
 ```
@@ -157,4 +156,15 @@ Scheduling Services
   > aws ecs delete-service --cluster deepdive --service web (delete web service)
   > aws ecs list-services --cluster deepdive
   > aws ecs create-service --generate-cli-skeleton
+```
+Run Task and Start Task
+```
+  > aws ecs run-task --cluster deepdive --task-definition web --count 1 (auto select container-instance)
+  > aws ecs list-tasks --cluster deepdive
+  > aws ecs stop-task --cluster deepdive --task arn:aws:ecs:ap-northeast-1:2829XXXXXX:task/38890c8d-bd81-4998-be6d-527bXXXXXX
+  > aws ecs list-tasks --cluster deepdive
+  > aws ecs 
+  > aws ecs list-container-instances --cluster deepdive
+  > aws ecs start-task --cluster deepdive --task-definition web --container-instances arn:aws:ecs:ap-northeast-1:2829XXXXXX:container-instance/3233fc0a-8ba6-4698-abb4-817XXXXXX (specific select container-instance)
+  > aws ecs stop-task --cluster deepdive --task arn:aws:ecs:ap-northeast-1:2829XXXXXX:task/b5d42a83-4276-46df-9cdb-0df6dXXXXXX
 ```
