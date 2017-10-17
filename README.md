@@ -210,3 +210,15 @@ Tearing down Our Cluster
   > aws ecs delete-cluster --cluster deepdive
   > aws ecs deregister-task-definition --task-definition web
 ```
+
+#### ECS Components
+* [Generating a New Rails Project](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-generating-a-new-rails-project.pdf)
+
+
+Generating a New Rails Project
+```
+  > cd scaling-aws-ecs
+  > docker run -v "$PWD":/usr/src/app -w /usr/src/app rails:4 rails new --skip-bundle dockerzon
+  > docker image ls
+  > docker image rm rails (if want to delete rails image)
+```
