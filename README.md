@@ -215,6 +215,7 @@ Tearing down Our Cluster
 * [Generating a New Rails Project](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-generating-a-new-rails-project.pdf)
 * [Running the Application Locally](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-running-the-application-locally.pdf)
 * [Working with the Application](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-working-with-the-application.pdf)
+* [Building the Demo Application](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-building-the-demo-application.pdf)
 
 
 Generating a New Rails Project
@@ -247,4 +248,21 @@ Working with the Application
   > exit
   > docker exec -it dockerzon_dockerzon_1 rails c
   > exit
+```
+Building the Demo Application
+```
+  > cd dockerzon
+  > docker-compose up
+  > docker exec dockerzon_dockerzon_1 rake db:migrate
+  > docker exec -it dockerzon_redis_1 redis-cli
+  > KEYS *
+  > GET dockerzon::cache:total_hits
+  > exit
+  > docker exec -it dockerzon_dockerzon_1 rails c
+  > Javelin.all
+  > Javelin.sum(:thrown)
+  > Javelin.count
+  > Javelin.all.pluck(:thrown)
+  > exit
+  > docker-compose down -v
 ```
