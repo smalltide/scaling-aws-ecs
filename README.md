@@ -214,6 +214,7 @@ Tearing down Our Cluster
 #### Developing the Ruby on Rails Application
 * [Generating a New Rails Project](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-generating-a-new-rails-project.pdf)
 * [Running the Application Locally](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-running-the-application-locally.pdf)
+* [Working with the Application](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-working-with-the-application.pdf)
 
 
 Generating a New Rails Project
@@ -234,8 +235,16 @@ Running the Application Locally
   > curl 127.0.0.1:8000
   > docker exec dockerzon_dockerzon_1 rake db:migrate
   > curl 127.0.0.1:8000
-  >
-  >
-  >
-  >
+```
+Working with the Application
+```
+  > cd dockerzon
+  > docker-compose up
+  > docker exec dockerzon_dockerzon_1 rails g model Dummy foo
+  > docker exec dockerzon_dockerzon_1 rails d model Dummy
+  > docker exec -it dockerzon_dockerzon_1 bash
+  > ls -al
+  > exit
+  > docker exec -it dockerzon_dockerzon_1 rails c
+  > exit
 ```
