@@ -1,0 +1,38 @@
+# Use the barebones version of Python 2.7.
+FROM python:2.7-slim
+
+# Optionally set a maintainer name to let people know who made this image.
+MAINTAINER Nick Janetakis <nick.janetakis@gmail.com>
+
+# Install dependencies:
+# - build-essential: To ensure certain packages can be compiled
+# - libpq-dev: Communicate with postgres through the postgres gem
+RUN apt-get update && apt-get install -qq -y --no-install-recommends \
+      build-essential nodejs libpq-dev
+
+# Set an environment variable to store where the app is installed to inside
+# of the Docker image. The name matches the project name out of convention only.
+ENV INSTALL_PATH /dockerzon
+RUN mkdir -p $INSTALL_PATH
+
+# This sets the context of where commands will be ran in and is documented
+# on Docker's website extensively.
+WORKDIR $INSTALL_PATH
+
+# Ensure packages are cached and only get updated when they change. This will
+# drastically decrease build times when your packages do not change.
+COPY requirements.txt requirements.txt
+
+# Install all of the package's dependencies.
+RUN pip install -r requirements.txt
+
+# Copy in the application code from your work station at the current directory
+# over to the working directory.
+COPY . .
+
+# Ensure the static assets are exposed through a volume so that nginx can read
+# in these values later.
+VOLUME ["static"]
+
+# The default command that gets ran will be to start the gunicorn server.
+CMD gunicorn -b 0.0.0.0:8000 "dockerzon.app:create_app()"
