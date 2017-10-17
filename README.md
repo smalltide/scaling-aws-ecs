@@ -87,6 +87,7 @@ ecsServiceRole
 * [ECS Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-scheduling-services.pdf)
 * [ECS Run Task and Start Task](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-starting-tasks.pdf)
 * [Private Docker Registry (ECR)](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-private-docker-registry-ecr.pdf)
+* [ECS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-ecs-cli.pdf)
 
 AWS ECS Clusters
 ```
@@ -188,3 +189,10 @@ Private Docker Registry (ECR)
   > aws ecs run-task --cluster deepdive --task-definition web --count 1
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecr.png "ecr")
+
+ECS CLI
+```
+  > https://github.com/aws/amazon­ecs­cli
+  > http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_tutorial.html
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecscli.png "ecscli")
