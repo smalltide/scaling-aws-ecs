@@ -273,7 +273,7 @@ Building the Demo Application
 * [Setting up RDS for Postgres](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-rds-for-postgres.pdf)
 * [Setting up ElastiCache for Redis](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-elasticache-for-redis.pdf)
 * [Setting up an Elastic Load Balancer](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-elastic-load-balancer.pdf)
-
+* [Profiling the Ruby on Rails Application](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-profiling-the-ruby-on-rails-application.pdf)
 
 
 Using and Configuring nginx
@@ -331,3 +331,20 @@ Setting up an Elastic Load Balancer
 
 #### Visualizing the Application's Architecture  
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/app-architecture.png "app-architecture")
+
+Profiling the Ruby on Rails Application
+```
+  > cd dockerzon
+  > add RAILS_ENV=production in .dockerzon.env top
+  > docker-compose up -d
+  > docker exec dockerzon_dockerzon_1 rake db:reset
+  > curl http://127.0.0.1:8000
+  > docker stats dockerzon_dockerzon_1 dockerzon_sidekiq_1
+  > docker pull williamyeh/wrk
+  > docker run --rm williamyeh/wrk -t10 -c50 -d10s http://<machine_ip>:8000
+  > docker-compose stop
+  > revise WEB_CONCURRENCY=2 in .dockerzon.env
+  > docker stats dockerzon_dockerzon_1 dockerzon_sidekiq_1
+  > docker run --rm williamyeh/wrk -t10 -c50 -d10s http://<machine_ip>:8000
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/profile-app.png "profile-app")
