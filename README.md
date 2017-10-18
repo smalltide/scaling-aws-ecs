@@ -272,6 +272,8 @@ Building the Demo Application
 * [Setting up an S3 Bucket](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
 * [Setting up RDS for Postgres](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-rds-for-postgres.pdf)
 * [Setting up ElastiCache for Redis](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-elasticache-for-redis.pdf)
+* [Setting up an Elastic Load Balancer](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-elastic-load-balancer.pdf)
+
 
 
 Using and Configuring nginx
@@ -315,3 +317,14 @@ Setting up ElastiCache for Redis
   > aws elasticache delete-cache-cluster --cache-cluster-id dockerzon-production (if want to delete)
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/elastic-cache.png "elastic-cache")
+
+Setting up an Elastic Load Balancer
+```
+  > aws ec2 describe-subnets
+  > aws elb create-load-balancer --load-balancer-name dockerzon-web --listeners "Protocol=HTTP, LoadBalancerPort=80, InstanceProtocol=HTTP, InstancePort=80" --subnets subnet-a03XXXX subnet-76XXXXX --security-groups sg-c78XXXX
+  > aws elb describe-load-balancers
+  > aws elb modify-load-balancer-attributes --load-balancer-name dockerzon-web --load-balancer-attributes "{\"ConnectionSettings\":{\"IdleTimeout\":5}}"
+  > aws elb configure-health-check --load-balancer-name dockerzon-web --health-check "Target=HTTP:80/health_check, Timeout=5, Interval=30, UnhealthyThreshold=2, HealthyThreshold=10"
+  > aws elb delete-load-balancer --load-balancer-name dockerzon-web (if want to delete)
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/elb.png "elb")
