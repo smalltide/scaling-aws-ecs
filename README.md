@@ -328,3 +328,6 @@ Setting up an Elastic Load Balancer
   > aws elb delete-load-balancer --load-balancer-name dockerzon-web (if want to delete)
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/elb.png "elb")
+
+#### Visualizing the Application's Architecture  
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/app-architecture.png "app-architecture")
