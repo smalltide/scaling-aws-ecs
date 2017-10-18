@@ -269,6 +269,7 @@ Building the Demo Application
 
 #### Preparing to Deploy Everything on AWS
 * [Using and Configuring nginx](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-using-and-configuring-nginx.pdf)
+* [Setting up an S3 Bucket](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
 
 
 Using and Configuring nginx
@@ -286,3 +287,13 @@ Using and Configuring nginx
   > docker-compose stop
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/nginx.png "nginx")
+
+Setting up an S3 Bucket
+```
+  > aws s3api create-bucket --bucket ecs-dockerzon --region ap-northeast-1 --create-bucket-configuration LocationConstraint=ap-northeast-1
+  > aws s3 ls s3://ecs-dockerzon
+  >
+  >
+  >
+  >
+```
