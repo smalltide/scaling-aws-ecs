@@ -34,7 +34,7 @@ Install docker, docker-machine, docker-compose on Linux
   > exit
   > docker-compose version  
 ```
-#### AWS Set up Resource
+### AWS Set up Resource
 * [Getting Set up on AWS](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-getting-set-up-on-aws.pdf)  
 * [Installing and Configuring the AWS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-installing-and-configuring-the-aws-cli.pdf)  
 * [Creating an SSH Keypair](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-an-ssh-keypair.pdf)  
@@ -78,7 +78,7 @@ ecsServiceRole
 #### ECS Components
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-components.png "ecs-components")
 
-#### ECS Components Resource
+### ECS Components Resource
 * [ECS Clusters](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-clusters.pdf)
 * [ECS Container Agent](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-agent.pdf)
 * [ECS Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
@@ -211,7 +211,7 @@ Tearing down Our Cluster
   > aws ecs deregister-task-definition --task-definition web
 ```
 
-#### Developing the Ruby on Rails Application
+### Developing the Ruby on Rails Application
 * [Generating a New Rails Project](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-generating-a-new-rails-project.pdf)
 * [Running the Application Locally](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-running-the-application-locally.pdf)
 * [Working with the Application](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-working-with-the-application.pdf)
@@ -267,7 +267,7 @@ Building the Demo Application
   > docker-compose down -v
 ```
 
-#### Preparing to Deploy Everything on AWS
+### Preparing to Deploy Everything on AWS
 * [Using and Configuring nginx](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-using-and-configuring-nginx.pdf)
 * [Setting up an S3 Bucket](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
 * [Setting up RDS for Postgres](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-rds-for-postgres.pdf)
