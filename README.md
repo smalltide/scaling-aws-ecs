@@ -270,7 +270,8 @@ Building the Demo Application
 #### Preparing to Deploy Everything on AWS
 * [Using and Configuring nginx](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-using-and-configuring-nginx.pdf)
 * [Setting up an S3 Bucket](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
-* [Setting up RDS for Postgres](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
+* [Setting up RDS for Postgres](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-rds-for-postgres.pdf)
+* [Setting up ElastiCache for Redis](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-elasticache-for-redis.pdf)
 
 
 Using and Configuring nginx
@@ -300,7 +301,7 @@ Setting up an S3 Bucket
 Setting up RDS for Postgres
 ```
   > aws rds create-db-instance --engine postgres --no-multi-az --no-publicly-accessible --vpc-security-group-ids sg-c782XXXX --db-instance-class db.t2.micro --allocated-storage 20 --db-instance-identifier dockerzon-production --db-name dockerzon_production --master-username dockerzon --master-user-password XXXXXXXX
-  > ws rds modify-db-instance --db-instance-identifier dockerzon-production --master-user-password XXXXXX (if forget password for revise) 
+  > aws rds modify-db-instance --db-instance-identifier dockerzon-production --master-user-password XXXXXX (if forget password for revise) 
   > aws rds describe-db-instances
   > aws rds delete-db-instance --db-instance-identifier docker-production --skip-final-snapshot (if want to delete)
 ```
@@ -308,10 +309,9 @@ Setting up RDS for Postgres
 
 Setting up ElastiCache for Redis
 ```
-  >
-  >
-  >
-  >
-  >
-  >
+  > aws elasticache create-cache-cluster --engine redis --security-group-ids sg-c78XXXXX --cache-node-type cache.t2.micro --num-cache-nodes 1 --cache-cluster-id dockerzon-production
+  > aws elasticache describe-cache-clusters
+  > aws elasticache describe-cache-clusters --show-cache-node-info
+  > aws elasticache delete-cache-cluster --cache-cluster-id dockerzon-production (if want to delete)
 ```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/elastic-cache.png "elastic-cache")
