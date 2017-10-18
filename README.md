@@ -270,6 +270,7 @@ Building the Demo Application
 #### Preparing to Deploy Everything on AWS
 * [Using and Configuring nginx](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-using-and-configuring-nginx.pdf)
 * [Setting up an S3 Bucket](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
+* [Setting up RDS for Postgres](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
 
 
 Using and Configuring nginx
@@ -292,6 +293,23 @@ Setting up an S3 Bucket
 ```
   > aws s3api create-bucket --bucket ecs-dockerzon --region ap-northeast-1 --create-bucket-configuration LocationConstraint=ap-northeast-1
   > aws s3 ls s3://ecs-dockerzon
+  > cd s3-production-ecsconfig
+  > aws s3 cp ecs.config s3://ecs-dockerzon/ecs.config (upload)
+  > aws s3 ls s3://ecs-dockerzon
+```
+Setting up RDS for Postgres
+```
+  > aws rds create-db-instance --engine postgres --no-multi-az --no-publicly-accessible --vpc-security-group-ids sg-c782XXXX --db-instance-class db.t2.micro --allocated-storage 20 --db-instance-identifier dockerzon-production --db-name dockerzon_production --master-username dockerzon --master-user-password XXXXXXXX
+  > ws rds modify-db-instance --db-instance-identifier dockerzon-production --master-user-password XXXXXX (if forget password for revise) 
+  > aws rds describe-db-instances
+  > aws rds delete-db-instance --db-instance-identifier docker-production --skip-final-snapshot (if want to delete)
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/rds.png "rds")
+
+Setting up ElastiCache for Redis
+```
+  >
+  >
   >
   >
   >
