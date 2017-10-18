@@ -266,3 +266,23 @@ Building the Demo Application
   > exit
   > docker-compose down -v
 ```
+
+#### Preparing to Deploy Everything on AWS
+* [Using and Configuring nginx](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-using-and-configuring-nginx.pdf)
+
+
+Using and Configuring nginx
+```
+  > cd nginx (revise PLACEHOLDER_VHOST in docker-entrypoint.sh)
+  > docker build -t dockerzon_nginx .
+  > cd dockerzon
+  > docker-compose up -d (ROR APP run on 8000 port)
+  > docker container ls -a
+  > docker run --rm -p 80:80 --net dockerzon_default dockerzon_nginx (nginx proxy 80 to 8000 port)
+  > curl 127.0.0.1:80
+  > cd nginx (revise PLACEHOLDER_VHOST in docker-entrypoint.sh)
+  > docker build -t dockerzon_nginx .
+  > cd dockerzon 
+  > docker-compose stop
+```
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/nginx.png "nginx")
