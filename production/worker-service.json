@@ -1,0 +1,10 @@
+{
+    "cluster": "production",
+    "serviceName": "worker",
+    "taskDefinition": "worker",
+    "desiredCount": 1,
+    "deploymentConfiguration": {
+        "maximumPercent": 100,
+        "minimumHealthyPercent": 0
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "cluster": "production",
+    "serviceName": "web",
+    "taskDefinition": "web",
+    "loadBalancers": [
+        {
+            "loadBalancerName": "dockerzon-web",
+            "containerName": "nginx",
+            "containerPort": 80
+        }
+    ],
+    "role": "ecsServiceRole",
+    "desiredCount": 2,
+    "deploymentConfiguration": {
+        "maximumPercent": 100,
+        "minimumHealthyPercent": 50
+    }
+}

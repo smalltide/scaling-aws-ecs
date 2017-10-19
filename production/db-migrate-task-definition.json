@@ -2,7 +2,7 @@
   "containerDefinitions": [
     {
       "name": "db-migrate",
-      "image": "28XXXXXXX.dkr.ecr.us-east-1.amazonaws.com/dockerzon/dockerzon:latest",
+      "image": "28XXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/dockerzon/dockerzon",
       "command": ["./bin/rake", "db:migrate"],
       "memory": 300,
       "environment": [
@@ -12,7 +12,7 @@
         },
         {
           "name": "DATABASE_URL",
-          "value": "postgresql://dockerzon:XXXXXXX@dockerzon-production.c6dzwciqk3ka.ap-northeast-1.rds.amazonaws.com:5432/dockerzon?encoding=utf8&pool=40&timeout=5000"
+          "value": "postgresql://dockerzon:XXXXXXX@dockerzon-production.c6dzwciqk3ka.ap-northeast-1.rds.amazonaws.com:5432/dockerzon_production?encoding=utf8&pool=40&timeout=5000"
         },
         {
           "name": "CACHE_URL",

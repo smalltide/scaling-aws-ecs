@@ -360,6 +360,7 @@ Profiling the Ruby on Rails Application
 * [Creating the Private Registry Repositories](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-creating-the-private-registry-repositories.pdf)
 * [Spinning up Multiple Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-spinning-up-multiple-container-instances.pdf)
 * [Registering the Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-registering-the-task-definitions.pdf)
+* [Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-scheduling-services.pdf)
 
 
 #### Introduction
@@ -407,4 +408,13 @@ Registering the Task Definitions
   > aws ecs register-task-definition --cli-input-json file://db-migrate-task-definition.json
   > aws ecs run-task --cluster production --task-definition db-migrate --count 1
   > aws ecs list-task-definitions
+```
+Scheduling Services
+```
+  > cd production
+  > aws ecs create-service --cli-input-json file://web-service.json
+  > aws ecs describe-services --cluster production --services web
+  > aws ecs create-service --cli-input-json file://worker-service.json
+  > aws ecs describe-services --cluster production --services worker
+  > curl <aws_elb_dns_url>
 ```
