@@ -357,6 +357,7 @@ Profiling the Ruby on Rails Application
 
 ## Deploying Everything with Amazon ECS
 * [Creating the Production Cluster](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-creating-the-production-cluster.pdf)
+* [Creating the Private Registry Repositories](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-creating-the-private-registry-repositories.pdf)
 
 
 #### Introduction
@@ -371,4 +372,16 @@ Creating the Production Cluster
   > aws s3 ls s3://ecs-dockerzon
   > aws s3 cp ecs.config s3://ecs-dockerzon/ecs.config (upload)
   > aws s3 ls s3://ecs-dockerzon
+```
+
+Creating the Private Registry Repositories
+```
+  > aws ecr get-login --no-include-email --region ap-northeast-1
+  > aws ecr create-repository --repository-name dockerzon/dockerzon
+  >  aws ecr create-repository --repository-name dockerzon/nginx
+  > aws ecr describe-repositories
+  > docker tag dockerzon_dockerzon:latest 28XXXXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/dockerzon/dockerzon:latest
+  > docker push 28XXXXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/dockerzon/dockerzon
+  > docker tag dockerzon_nginx:latest 28XXXXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/dockerzon/nginx:latest
+  > docker push 28XXXXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/dockerzon/nginx
 ```
