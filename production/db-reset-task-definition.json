@@ -1,0 +1,33 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "db-reset",
+      "image": "28XXXXXXX.dkr.ecr.us-east-1.amazonaws.com/dockerzon/dockerzon:latest",
+      "command": ["./bin/rake", "db:reset"],
+      "memory": 300,
+      "environment": [
+        {
+          "name": "RAILS_ENV",
+          "value": "production"
+        },
+        {
+          "name": "DATABASE_URL",
+          "value": "postgresql://dockerzon:XXXXXXX@dockerzon-production.c6dzwciqk3ka.ap-northeast-1.rds.amazonaws.com:5432/dockerzon?encoding=utf8&pool=40&timeout=5000"
+        },
+        {
+          "name": "CACHE_URL",
+          "value": "redis://dockerzon-production.minrwd.0001.apne1.cache.amazonaws.com:6379"
+        },
+        {
+          "name": "JOB_WORKER_URL",
+          "value": "redis://dockerzon-production.minrwd.0001.apne1.cache.amazonaws.com:6379"
+        },
+        {
+          "name": "SECRET_TOKEN",
+          "value": "9248725cb3431fc5bde4cfb4a6c40f784c49e83f84c10aa78b427ad4c1ccf9b716aa3055907c768d8976deae1b5e6d8b2db60826f93e45c41b5394a53bd87c55"
+        }
+      ]
+    }
+  ],
+  "family": "db-reset"
+}

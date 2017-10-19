@@ -359,6 +359,7 @@ Profiling the Ruby on Rails Application
 * [Creating the Production Cluster](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-creating-the-production-cluster.pdf)
 * [Creating the Private Registry Repositories](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-creating-the-private-registry-repositories.pdf)
 * [Spinning up Multiple Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-spinning-up-multiple-container-instances.pdf)
+* [Registering the Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-registering-the-task-definitions.pdf)
 
 
 #### Introduction
@@ -391,4 +392,19 @@ Spinning up Multiple Container Instances
   > cd production
   > aws ec2 run-instances --image-id ami-21815747 --count 3 --instance-type t2.micro --iam-instance-profile Name=ecsInstanceRole --key-name aws-ice --security-group-ids sg-c78xxxxx --user-data file://copy-ecs-config-to-s3
   > aws ecs list-container-instances --cluster production (--key-name mean ssh key to access ec2)
+```
+Registering the Task Definitions
+```
+  > cd dockerzon
+  > docker-compose up -d
+  > docker exec dockerzon_dockerzon_1 rake secret
+  > cd production
+  > aws ecs register-task-definition --cli-input-json file://worker-task-definition.json
+  > aws ecs register-task-definition --cli-input-json file://web-task-definition.json
+  > aws ecs register-task-definition --cli-input-json file://db-reset-task-definition.json
+  > aws ecs run-task --cluster production --task-definition db-reset --count 1
+  > aws ecs deregister-task-definition --task-definition db-reset:1
+  > aws ecs register-task-definition --cli-input-json file://db-migrate-task-definition.json
+  > aws ecs run-task --cluster production --task-definition db-migrate --count 1
+  > aws ecs list-task-definitions
 ```
