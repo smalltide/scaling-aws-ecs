@@ -5,10 +5,15 @@ Scaling Docker on AWS
 https://www.udemy.com/scaling-docker-on-aws
 
 Skills
-1. AWS
-2. AWS ECR
-3. AWS ECS
-4. Docker
+1. Docker
+2. AWS
+3. AWS ECR
+4. AWS ECS
+5. AWS RDS
+6. AWS S3
+7. AWS ELB
+8. AWS ElastiCache
+
 
 #### AWS Scaling  
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/aws-scaling.png "aws-scaling")
@@ -34,7 +39,7 @@ Install docker, docker-machine, docker-compose on Linux
   > exit
   > docker-compose version  
 ```
-### AWS Set up Resource
+## AWS Set up Resource
 * [Getting Set up on AWS](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-getting-set-up-on-aws.pdf)  
 * [Installing and Configuring the AWS CLI](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-installing-and-configuring-the-aws-cli.pdf)  
 * [Creating an SSH Keypair](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/3-creating-an-ssh-keypair.pdf)  
@@ -78,7 +83,7 @@ ecsServiceRole
 #### ECS Components
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/ecs-components.png "ecs-components")
 
-### ECS Components Resource
+## ECS Components Resource
 * [ECS Clusters](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-clusters.pdf)
 * [ECS Container Agent](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-agent.pdf)
 * [ECS Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/4-container-instances.pdf)
@@ -211,7 +216,7 @@ Tearing down Our Cluster
   > aws ecs deregister-task-definition --task-definition web
 ```
 
-### Developing the Ruby on Rails Application
+## Developing the Ruby on Rails Application
 * [Generating a New Rails Project](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-generating-a-new-rails-project.pdf)
 * [Running the Application Locally](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-running-the-application-locally.pdf)
 * [Working with the Application](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/5-working-with-the-application.pdf)
@@ -267,7 +272,8 @@ Building the Demo Application
   > docker-compose down -v
 ```
 
-### Preparing to Deploy Everything on AWS
+## Preparing to Deploy Everything on AWS
+* [Estimating AWS Costs Based on Facts](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/7-going-over-the-cost-spreadsheet.pdf)
 * [Using and Configuring nginx](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-using-and-configuring-nginx.pdf)
 * [Setting up an S3 Bucket](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-an-s3-bucket.pdf)
 * [Setting up RDS for Postgres](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/6-setting-up-rds-for-postgres.pdf)
@@ -348,3 +354,21 @@ Profiling the Ruby on Rails Application
   > docker run --rm williamyeh/wrk -t10 -c50 -d10s http://<machine_ip>:8000
 ```
 ![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/profile-app.png "profile-app")
+
+## Deploying Everything with Amazon ECS
+* [Creating the Production Cluster](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-creating-the-production-cluster.pdf)
+
+
+#### Introduction
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/deploy1.png "deploy1")
+![alt text](https://github.com/smalltide/scaling-aws-ecs/blob/master/img/deploy2.png "deploy2")
+
+Creating the Production Cluster
+```
+  > cd production
+  > aws ecs create-cluster --cluster-name production
+  > aws s3api create-bucket --bucket ecs-dockerzon --region ap-northeast-1 --create-bucket-configuration LocationConstraint=ap-northeast-1
+  > aws s3 ls s3://ecs-dockerzon
+  > aws s3 cp ecs.config s3://ecs-dockerzon/ecs.config (upload)
+  > aws s3 ls s3://ecs-dockerzon
+```
