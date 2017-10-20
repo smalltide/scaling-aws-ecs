@@ -450,3 +450,15 @@ Exploring the AWS Console and Container Logs
   > docker logs -f <container_id or name> (watch log)
   > docker logs --tail 20 <container_id or name> (get tail 20 log)
 ```
+
+## Domain Names and SSL
+* [Creating Free SSL Certificates with Amazon ACM](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/9-creating-free-ssl-certificates-with-amazon-acm.pdf)
+
+
+Creating Free SSL Certificates with Amazon ACM
+```
+  > aws acm request-certificate --domain-name dockerzon.XXXXX.cc
+  > aws acm describe-certificate --certificate-arn arn:aws:acm:ap-northeast-1:28XXXXXX:certificate/fab62309-4979-4805-b0a5-XXXXXX
+  > aws acm list-certificates
+  > aws acm delete-certificate --certificate-arn arn:aws:acm:ap-northeast-1:28XXXXXX:certificate/fab62309-4979-4805-b0a5-XXXXXX (if want delete)
+```
