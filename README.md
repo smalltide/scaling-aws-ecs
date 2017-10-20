@@ -363,6 +363,7 @@ Profiling the Ruby on Rails Application
 * [Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-scheduling-services.pdf)
 * [Pushing Application Changes without Downtime](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-pushing-application-changes-without-downtime.pdf)
 * [Automating Your Deployments with a Script](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-automating-your-deployments-with-a-script.pdf)
+* [Exploring the AWS Console and Container Logs](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-exploring-the-aws-console-and-container-logs.pdf)
 
 
 #### Introduction
@@ -440,4 +441,12 @@ Automating Your Deployments with a Script
   > cd production
   > ./deploy.sh -h
   > ./deploy.sh -a
+```
+Exploring the AWS Console and Container Logs
+```
+  > ssh -i "aws-ice.pem" ec2-user@<ec2_ip or ec2_dns>
+  > docker container ls
+  > docker container ls -a
+  > docker logs -f <container_id or name> (watch log)
+  > docker logs --tail 20 <container_id or name> (get tail 20 log)
 ```
