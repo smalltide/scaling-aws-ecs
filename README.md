@@ -361,6 +361,7 @@ Profiling the Ruby on Rails Application
 * [Spinning up Multiple Container Instances](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-spinning-up-multiple-container-instances.pdf)
 * [Registering the Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-registering-the-task-definitions.pdf)
 * [Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-scheduling-services.pdf)
+* [Pushing Application Changes without Downtime](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-pushing-application-changes-without-downtime.pdf)
 
 
 #### Introduction
@@ -416,5 +417,20 @@ Scheduling Services
   > aws ecs describe-services --cluster production --services web
   > aws ecs create-service --cli-input-json file://worker-service.json
   > aws ecs describe-services --cluster production --services worker
+  > curl <aws_elb_dns_url>
+```
+Pushing Application Changes without Downtime
+```
+  > cd dockerzon
+  > docker-compose build
+  > docker tag dockerzon_dockerzon:latest 28XXXXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/dockerzon/dockerzon:latest
+  >  aws ecr get-login --no-include-email --region ap-northeast-1
+  > docker push 28XXXXXXX.dkr.ecr.ap-northeast-1.amazonaws.com/dockerzon/dockerzon
+  > curl <aws_elb_dns_url>
+  > cd production
+  > aws ecs register-task-definition --cli-input-json file://web-task-definition.json
+  > aws ecs update-service --cluster production --service web --task-definition web --desired-count 2
+  > aws ecs register-task-definition --cli-input-json file://worker-task-definition.json
+  > aws ecs update-service --cluster production --service worker -task-definition worker --desired-count 1
   > curl <aws_elb_dns_url>
 ```
