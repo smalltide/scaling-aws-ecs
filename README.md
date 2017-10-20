@@ -362,6 +362,7 @@ Profiling the Ruby on Rails Application
 * [Registering the Task Definitions](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-registering-the-task-definitions.pdf)
 * [Scheduling Services](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-scheduling-services.pdf)
 * [Pushing Application Changes without Downtime](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-pushing-application-changes-without-downtime.pdf)
+* [Automating Your Deployments with a Script](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/8-automating-your-deployments-with-a-script.pdf)
 
 
 #### Introduction
@@ -433,4 +434,10 @@ Pushing Application Changes without Downtime
   > aws ecs register-task-definition --cli-input-json file://worker-task-definition.json
   > aws ecs update-service --cluster production --service worker -task-definition worker --desired-count 1
   > curl <aws_elb_dns_url>
+```
+Automating Your Deployments with a Script
+```
+  > cd production
+  > ./deploy.sh -h
+  > ./deploy.sh -a
 ```
