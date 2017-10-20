@@ -453,6 +453,8 @@ Exploring the AWS Console and Container Logs
 
 ## Domain Names and SSL
 * [Creating Free SSL Certificates with Amazon ACM](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/9-creating-free-ssl-certificates-with-amazon-acm.pdf)
+* [Updating the Security Group to Handle SSL](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/9-updating-the-security-group-to-handle-ssl.pdf)
+* [Updating the ELB to Handle SSL](https://github.com/smalltide/scaling-aws-ecs/blob/master/resource/9-updating-the-elb-to-handle-ssl.pdf)
 
 
 Creating Free SSL Certificates with Amazon ACM
@@ -461,4 +463,13 @@ Creating Free SSL Certificates with Amazon ACM
   > aws acm describe-certificate --certificate-arn arn:aws:acm:ap-northeast-1:28XXXXXX:certificate/fab62309-4979-4805-b0a5-XXXXXX
   > aws acm list-certificates
   > aws acm delete-certificate --certificate-arn arn:aws:acm:ap-northeast-1:28XXXXXX:certificate/fab62309-4979-4805-b0a5-XXXXXX (if want delete)
+```
+Updating the Security Group to Handle SSL
+```
+  > aws ec2 authorize-security-group-ingress --group-id sg-c78XXXX --protocol tcp --port 443 --cidr 0.0.0.0/0
+```
+Updating the ELB to Handle SSL
+```
+  > aws elb create-load-balancer-listeners --load-balancer-name dockerzon-web --listeners "Protocol=HTTPS, LoadBalancerPort=443, InstanceProtocol=HTTP, InstancePort=80, SSLCertificateId=arn:aws:acm:ap-northeast-1:28XXXXX:certificate/fab62309-4979-4805-b0a5-XXXXXX"
+  > aws elb describe-load-balancers --load-balancer-names dockerzon-web
 ```
