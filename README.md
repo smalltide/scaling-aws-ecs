@@ -59,6 +59,7 @@ Installing and Configuring the AWS CLI
 Creating an SSH Keypair (local pc ssh can connect ec2 instance)
 ```
   > aws ec2 create-key-pair --key-name aws-ice --query 'KeyMaterial' --output text > ~/.ssh/aws-ice.pem
+  > chmod 400 ~/.ssh/aws-ice.pem
   > aws ec2 describe-key-pairs
   > aws ec2 describe-key-pairs --key-names aws-ice
   > aws ec2 delete-key-pair --key-names aws-ice (for delete)
